@@ -1,3 +1,141 @@
+"""
+STRATEGY PATTERN (Strateji Deseni)
+===================================
+
+TANIM:
+Strategy Pattern, bir algoritma ailesini tanimlar, her birini ayri bir sinifa koyar
+ve birbirlerinin yerine kullanilabilir hale getirir. Strateji, algoritmay i kullanan
+istemciden bagimsiz olarak degistirilebilir hale getirir. Davranissal (behavioral)
+bir tasarim desenidir.
+
+Ne Zaman Kullanilir:
+--------------------
+- Ayni islemi farkli yontemlerle yapmak gerektiginde
+- Cok fazla if-else veya switch-case varsa
+- Runtime'da algoritma degistirmek istendiginde
+- Algoritmalarin kapsullenmesi gerektiginde
+- Benzer siniflar sadece davranislarinda farklilik gosterdiginde
+
+Avantajlari:
+------------
++ Open/Closed Principle - yeni strateji eklemek kolay
++ if-else/switch-case karmasikligini ortadan kaldirir
++ Runtime'da strateji degistirilebilir
++ Algoritmayi kullanan koddan izole eder
++ Test edilebilirlik artar
+
+Dezavantajlari:
+--------------
+- Strateji sayisi artinca sinif sayisi artar
+- İstemci farkli stratejileri bilmeli
+- Basit durumlar icin gereksiz olabilir
+
+Gercek Hayattan Ornekler:
+-------------------------
+1. ODEME STRATEJILERI:
+   shopping_cart = ShoppingCart()
+
+   # Kredi karti ile ode
+   credit_card = CreditCardPayment("1234-5678-9012-3456")
+   shopping_cart.set_payment_strategy(credit_card)
+   shopping_cart.checkout(1000)
+
+   # PayPal ile ode
+   paypal = PayPalPayment("user@example.com")
+   shopping_cart.set_payment_strategy(paypal)
+   shopping_cart.checkout(500)
+
+   # Kripto para ile ode
+   crypto = CryptoPayment("wallet_address_123")
+   shopping_cart.set_payment_strategy(crypto)
+   shopping_cart.checkout(2000)
+
+2. SIRALAMA STRATEJILERI:
+   products = [...]
+
+   sorter = ProductSorter()
+
+   # Fiyata gore sirala
+   sorter.set_strategy(PriceSortStrategy())
+   sorter.sort(products)
+
+   # Popülerlige gore sirala
+   sorter.set_strategy(PopularitySortStrategy())
+   sorter.sort(products)
+
+   # Alfabetik sirala
+   sorter.set_strategy(AlphabeticalSortStrategy())
+   sorter.sort(products)
+
+3. SIKISTIRMA STRATEJILERI:
+   file_compressor = FileCompressor()
+
+   # ZIP sikistirma
+   file_compressor.set_strategy(ZipCompression())
+   file_compressor.compress("file.txt")
+
+   # RAR sikistirma
+   file_compressor.set_strategy(RarCompression())
+   file_compressor.compress("file.txt")
+
+   # 7Z sikistirma
+   file_compressor.set_strategy(SevenZipCompression())
+   file_compressor.compress("file.txt")
+
+4. NAVIGASYON STRATEJILERI:
+   navigator = Navigator()
+
+   # Araba ile rota
+   navigator.set_strategy(CarRouteStrategy())
+   navigator.build_route("Ankara", "Istanbul")  # Otoyol
+
+   # Yuruyerek rota
+   navigator.set_strategy(WalkingRouteStrategy())
+   navigator.build_route("Ankara", "Istanbul")  # Park ve yuruyus yollari
+
+   # Toplu tasima
+   navigator.set_strategy(PublicTransportStrategy())
+   navigator.build_route("Ankara", "Istanbul")  # Otobus/tren
+
+5. VALIDASYON STRATEJILERI:
+   validator = Validator()
+
+   # Email validasyonu
+   validator.set_strategy(EmailValidationStrategy())
+   validator.validate("user@example.com")
+
+   # Telefon validasyonu
+   validator.set_strategy(PhoneValidationStrategy())
+   validator.validate("+905551234567")
+
+   # TC Kimlik validasyonu
+   validator.set_strategy(TCKNValidationStrategy())
+   validator.validate("12345678901")
+
+6. INDIRIM STRATEJILERI:
+   # Black Friday indirimi
+   black_friday = BlackFridayDiscount()  # %50 indirim
+
+   # Ogrenci indirimi
+   student_discount = StudentDiscount()  # %20 indirim
+
+   # Sadakat indirimi
+   loyalty_discount = LoyaltyDiscount()  # %10 indirim
+
+   # Kupon indirimi
+   coupon = CouponDiscount("SAVE30")  # 30 TL indirim
+
+   product = Product(price=1000)
+   product.set_discount_strategy(black_friday)
+   final_price = product.calculate_price()
+
+Asagidaki Ornekte:
+------------------
+Urun fiyati icin farkli indirim stratejileri gosterilmektedir.
+Item sinifi, runtime'da farkli discount_strategy'ler alabilir
+ve buna gore fiyat hesaplanir.
+"""
+
 """A separate class for Item"""
 
 

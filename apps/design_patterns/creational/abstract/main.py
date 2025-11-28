@@ -1,3 +1,54 @@
+"""
+ABSTRACT FACTORY PATTERN (Soyut Fabrika Deseni)
+================================================
+
+TANIM:
+Abstract Factory, birbiriyle iliskili veya bagimlı nesne ailelerini somut siniflarini
+belirtmeden olusturmak icin bir arayuz saglayan yaratici (creational) bir tasarim desenidir.
+
+Ne Zaman Kullanilir:
+--------------------
+- Sistem, urunlerinin nasil olusturuldugu, birlestirildiginden bagimsiz olmalidir
+- Sistem, birden fazla urun ailesinden biriyle yapilandirilmalidir
+- Iliskili urun nesnelerinin birlikte kullanilmasi gerektiginde
+- Sadece arayuzleri gostermek ve uygulamalari gizlemek istedigimizde
+
+Avantajlari:
+------------
++ Somut siniflardan izole eder
++ Urun aileleri arasinda gecis kolaydir
++ Urunler arasi tutarlilik saglar
++ Single Responsibility Principle'i destekler
+
+Dezavantajlari:
+--------------
+- Yeni urun turleri eklemek zor olabilir
+- Kod karmasikligi artabilir
+
+Gercek Hayattan Ornekler:
+-------------------------
+1. VERITABANI BAGLANTILARI:
+   - MySQL, PostgreSQL, MongoDB icin farkli baglanti fabrikalari
+   - Her fabrika kendi Connection, Query, Transaction nesnelerini uretir
+
+2. GUI KUTUPHANELERI:
+   - Windows, MacOS, Linux icin farkli UI eleman fabrikalari
+   - Her fabrika kendi Button, TextBox, Checkbox'larini olusturur
+
+3. E-TICARET SISTEMLERI:
+   - Farkli ulkeler icin odeme sistemleri (TR: Iyzico, US: Stripe, EU: PayPal)
+   - Her fabrika kendi Payment, Invoice, Shipping nesnelerini uretir
+
+4. OYUN GELISTIRME:
+   - Farkli oyun modlari icin dusman fabrikalari
+   - Kolay mod: yavas ve zayif dusmanlar, Zor mod: hizli ve guclu dusmanlar
+
+Asagidaki Ornekte:
+------------------
+GeeksforGeeks portal icin kurs fabrikasi ornegi gosterilmektedir.
+Farkli kurs turleri (DSA, STL, SDE) abstract factory pattern kullanilarak olusturulmaktadir.
+"""
+
 # Python Code for object
 # oriented concepts using
 # the abstract factory

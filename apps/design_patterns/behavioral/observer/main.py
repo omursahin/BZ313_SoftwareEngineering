@@ -1,3 +1,126 @@
+"""
+OBSERVER PATTERN (Gozlemci Deseni)
+===================================
+
+TANIM:
+Observer Pattern, bir nesnedeki degisiklikleri bagimli nesnelere otomatik olarak bildiren
+davranissal (behavioral) bir tasarim desenidir. "Publish-Subscribe" veya "Event-Listener"
+olarak da bilinir.
+
+Ne Zaman Kullanilir:
+--------------------
+- Bir nesnedeki degisiklik diger nesneleri etkilediginde
+- Nesnenin kac tane gozlemcisi oldugunu onceden bilmedigimizde
+- Event-driven (olay tabanli) mimari gerektiginde
+- Gevşek baglanti (loose coupling) istedigimizde
+- One-to-many bagimliligi varsa
+
+Avantajlari:
+------------
++ Open/Closed Principle - yeni subscriber'lar kolayca eklenebilir
++ Runtime'da iliskiler kurulabilir
++ Gevşek baglanti saglar
++ Broadcast iletisim destekler
++ Event-driven programming destegi
+
+Dezavantajlari:
+--------------
+- Observer'lar rastgele sirada bildirim alir
+- Bellek sizintisi riski (observer kaydini silmezsek)
+- Performans problemi (cok fazla observer)
+- Debug edilmesi zor olabilir
+
+Gercek Hayattan Ornekler:
+-------------------------
+1. HABER ABONELIGI (Newsletter):
+   newspaper = Newspaper()
+
+   subscriber1 = EmailSubscriber("ahmet@example.com")
+   subscriber2 = SMSSubscriber("+905551234567")
+   subscriber3 = PushNotificationSubscriber("user123")
+
+   newspaper.subscribe(subscriber1)
+   newspaper.subscribe(subscriber2)
+   newspaper.subscribe(subscriber3)
+
+   # Yeni haber yayinlandi
+   newspaper.publish("Onemli haber!")  # Tum aboneler bildirim alir
+
+2. SOSYAL MEDYA TAKIP SISTEMI:
+   influencer = SocialMediaAccount("tech_guru")
+
+   follower1 = User("user1")
+   follower2 = User("user2")
+   follower3 = User("user3")
+
+   influencer.add_follower(follower1)
+   influencer.add_follower(follower2)
+   influencer.add_follower(follower3)
+
+   influencer.post("Yeni video!")  # Tum takipciler bildirim alir
+
+3. HISSE SENEDI FIYAT TAKIBI:
+   stock = Stock("AAPL", price=150)
+
+   trader1 = Trader("trader1")
+   trader2 = Trader("trader2")
+   analyst = MarketAnalyst()
+
+   stock.add_observer(trader1)
+   stock.add_observer(trader2)
+   stock.add_observer(analyst)
+
+   stock.set_price(155)  # Fiyat degisti, herkes bilgilendirildi
+   # trader1: "AAPL 155'e cikti"
+   # trader2: "AAPL 155'e cikti"
+   # analyst: "AAPL 155'e cikti, analiz yapiliyor..."
+
+4. GUI EVENT LISTENER:
+   button = Button("Submit")
+
+   button.add_click_listener(lambda: print("Form gonderiliyor"))
+   button.add_click_listener(lambda: validate_form())
+   button.add_click_listener(lambda: analytics.track("button_clicked"))
+
+   button.click()  # Tum listener'lar calisir
+
+5. DOSYA DEGISIKLIK IZLEYICI:
+   file_watcher = FileWatcher("config.json")
+
+   config_manager = ConfigManager()
+   cache_cleaner = CacheCleaner()
+   logger = Logger()
+
+   file_watcher.add_observer(config_manager)
+   file_watcher.add_observer(cache_cleaner)
+   file_watcher.add_observer(logger)
+
+   # Dosya degisti
+   file_watcher.detect_change()  # Tum observer'lar bilgilendirilir
+
+6. ISIK SENSORU SISTEMI:
+   light_sensor = LightSensor()
+
+   auto_lights = AutomaticLights()
+   blinds = AutomaticBlinds()
+   alarm = SecurityAlarm()
+
+   light_sensor.add_observer(auto_lights)
+   light_sensor.add_observer(blinds)
+   light_sensor.add_observer(alarm)
+
+   light_sensor.detect_darkness()
+   # auto_lights: Isiklari ac
+   # blinds: Panjurlari kapat
+   # alarm: Gece moduna gec
+
+Asagidaki Ornekte:
+------------------
+Veri degisikliklerini farkli gorunumlerde (Decimal, Hex, Octal) gosteren
+observer pattern ornegi bulunmaktadir. Data nesnesi degistiginde tum
+viewer'lar (observer'lar) otomatik olarak guncellenir.
+"""
+
 class Subject:
     """Represents what is being observed"""
 

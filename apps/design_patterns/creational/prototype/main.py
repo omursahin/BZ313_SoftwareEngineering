@@ -1,3 +1,82 @@
+"""
+PROTOTYPE PATTERN (Prototip Deseni)
+====================================
+
+TANIM:
+Prototype Pattern, mevcut nesneleri klonlayarak yeni nesneler olusturmaya yarayan
+yaratici (creational) bir tasarim desenidir. Bu desen, nesnelerin tam bir kopyasini
+olusturmak icin kullanilir ve nesne olusturma maliyetini azaltir.
+
+Ne Zaman Kullanilir:
+--------------------
+- Nesne olusturma maliyeti yuksek oldugunda (veritabani sorgusu, agir hesaplamalar)
+- Benzer nesneler olusturulmasi gerektiginde
+- Siniflar runtime'da dinamik olarak yuklendigi nde
+- Alt sinif sayisini azaltmak istedigimizde
+- Nesne olusturma sureci karmasik oldugunda
+
+Avantajlari:
+------------
++ Performans artisi (mevcut nesne kopyalanir, sifirdan olusturulmaz)
++ Alt sinif sayisini azaltir
++ Runtime'da nesne ekleme/cik arma kolayligi
++ Karmasik nesneleri kolayca kopyalayabilme
++ Alternative to subclassing
+
+Dezavantajlari:
+--------------
+- Dongusal referanslar iceren nesneleri klonlamak zor olabilir
+- Deep copy vs Shallow copy karisikligi
+- Her sinif clone metodu implement etmelidir
+
+Gercek Hayattan Ornekler:
+-------------------------
+1. OYUN GELISTIRME - Dusman Kopyalama:
+   # Temel bir dusman olustur ve ozellikleri ayarla
+   base_enemy = Enemy("Goblin", health=100, damage=10)
+
+   # Ayni ozelliklere sahip 50 dusman kopyala
+   enemies = [base_enemy.clone() for _ in range(50)]
+
+2. DOKUMAN SABLONLARI:
+   # Standart bir sozlesme sablonu
+   contract_template = Document("Sozlesme Sablonu")
+   contract_template.add_header()
+   contract_template.add_footer()
+
+   # Her musteri icin kopyala ve ozelleştir
+   customer_contract = contract_template.clone()
+   customer_contract.set_customer("Ahmet Yilmaz")
+
+3. GRAFIK EDITORU - Sekil Kopyalama:
+   # Karmasik bir sekil olustur
+   complex_shape = Shape()
+   complex_shape.add_gradient()
+   complex_shape.add_shadow()
+   complex_shape.add_border()
+
+   # Ayni ozelliklere sahip kopyalar olustur
+   shape_copy1 = complex_shape.clone()
+   shape_copy2 = complex_shape.clone()
+
+4. VERITABANI BAGLANTISI:
+   # Varsayilan ayarlara sahip baglanti
+   db_template = DatabaseConnection("localhost", port=5432)
+
+   # Farkli veritabanlari icin kopyala
+   db1 = db_template.clone()
+   db1.set_database("users_db")
+
+   db2 = db_template.clone()
+   db2.set_database("products_db")
+
+Asagidaki Ornekte:
+------------------
+GeeksforGeeks kurs sistemi icin prototype pattern ornegi gosterilmektedir.
+Kurs nesneleri bir cache'te saklanir ve gerektiginde klonlanarak yeni nesneler
+olusturulur. Bu sayede her seferinde yeni nesne olusturma maliyeti onlenir.
+"""
+
 # import the required modules
 
 from abc import ABCMeta, abstractmethod
