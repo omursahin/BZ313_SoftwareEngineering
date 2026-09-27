@@ -5,14 +5,14 @@ Erciyes Üniversitesi, Bilgisayar Mühendisliği Bölümü
 Bu repoda dersin haftalık slaytları yayımlanmaktadır. İşlenen her haftanın sunumu
 `docs` klasörüne PDF olarak eklenir.
 
-**Hafta 1 slaytları:** [docs/hafta-01.pdf](docs/hafta-01.pdf)
+**En son eklenen:** [Hafta 2 slaytları](docs/hafta-02.pdf)
 
 ## 14 haftalık akış
 
 | Hafta | Konu |
 |---|---|
 | 1 | [Yazılım mühendisliğine giriş ve dönem projesi](docs/hafta-01.pdf) |
-| 2 | Modern yazılım geliştirme süreçleri; Git, GitHub, Kanban |
+| 2 | [Modern yazılım geliştirme süreçleri; Git, GitHub, Kanban](docs/hafta-02.pdf) |
 | 3 | Fizibilite çalışması ve müşteri görüşmesi |
 | 4 | Gereksinim mühendisliği |
 | 5 | Gereksinim modelleri ve risk analizi |
